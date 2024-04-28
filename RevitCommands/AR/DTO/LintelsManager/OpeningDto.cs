@@ -13,15 +13,15 @@ using System.Threading.Tasks;
 namespace MS.RevitCommands.AR.DTO
 {
     /// <summary>
-    /// Dto для хранения данных из Revit модели о проеме и его перемычке внутри диалогового окна менеджера перемычек
-    /// с последующим парсингом отредактированного Dto в изменения в модели Revit
+    /// Dto for storing data from the Revit model about the opening and its lintel inside the lintel manager dialog box
+    /// followed by parsing the edited Dto into changes in the Revit model
     /// </summary>
     public class OpeningDto : ViewModelBase, IIdentifiable
     {
         /// <summary>
         /// Перемычка
         /// </summary>
-        private protected Lintel _lintel;
+        protected Lintel _lintel;
 
         /// <summary>
         /// Идентификатор
@@ -101,7 +101,7 @@ namespace MS.RevitCommands.AR.DTO
         }
 
         /// <summary>
-        /// Строковое представление всех свойств перемычки, доступных пользователю
+        /// String representation of all lintel properties available to the user
         /// </summary>
         public string LongName
         {
@@ -194,12 +194,14 @@ namespace MS.RevitCommands.AR.DTO
         /// <summary>
         /// Строковое представление расстояния от проема до торца стены справа
         /// </summary>
-        public virtual string DistanceConditionToRightEnd { get => DistanceToRightEnd >= 250 ? "≥250" : "<250"; private protected set { } }
+        public virtual string DistanceConditionToRightEnd
+        { get => DistanceToRightEnd >= 250 ? "≥250" : "<250"; private protected set { } }
 
         /// <summary>
         /// Строковое представление расстояния от проема до торца стены слева
         /// </summary>
-        public virtual string DistanceConditionToLeftEnd { get => DistanceToLeftEnd >= 250 ? "≥250" : "<250"; private protected set { } }
+        public virtual string DistanceConditionToLeftEnd
+        { get => DistanceToLeftEnd >= 250 ? "≥250" : "<250"; private protected set { } }
 
         /// <summary>
         /// Название материала сердцевины стены
@@ -283,7 +285,6 @@ namespace MS.RevitCommands.AR.DTO
             sb.Remove(sb.Length - 2, 2);
             return $"Id: {OpeningId}, Перемычка: {Lintel?.Mark}, {sb}";
         }
-
 
         /// <summary>
         /// Возвращает словарь названий параметров перемычки и их значений

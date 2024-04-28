@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace MS.RevitCommands.Models.Interfaces
 {
     /// <summary>
-    /// Интерфейс для идентифицируемых обхектов
+    /// 可识别对象的接口
     /// </summary>
     public interface IIdentifiable
     {
         /// <summary>
-        /// Уникальный идентификатор
+        /// 唯一标识符
         /// </summary>
         Guid Guid { get; }
     }

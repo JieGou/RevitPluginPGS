@@ -1,21 +1,21 @@
 ﻿<Window x:Class="MS.GUI.Windows.AR.LintelsManager.OpeningsInstancesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:MS.GUI.ViewModels.AR.LintelsManager"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000" MinHeight="200" MinWidth="500"
-        Title="Редактирование перемычек в одинаковых проемах">
+        Title="Editing lintels in identical openings">
     <Window.DataContext>
-        <vm:OpeningsInstancesViewModel/>
+        <vm:OpeningsInstancesViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.Resources>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <DataGrid ItemsSource="{Binding OpeningsView}"
                   CanUserAddRows="False"
@@ -31,16 +31,16 @@
                   ScrollViewer.CanContentScroll="True">
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">
-                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center" />
                 </Style>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    <Setter Property="Height" Value="40" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Width="60"
-                                    Header="Марка"
+                                    Header="Brand"
                                     Binding="{Binding Mark}">
                 </DataGridTextColumn>
                 <DataGridTextColumn Width="60"
@@ -49,7 +49,7 @@
                                     IsReadOnly="True">
                     <DataGridTextColumn.Header>
                         <TextBlock TextAlignment="Center">
-                                    <TextBlock>Ширина<LineBreak/>проема</TextBlock>
+                                    <TextBlock>Width<LineBreak />opening</TextBlock>
                             </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
@@ -59,7 +59,7 @@
                                     CanUserResize="False">
                     <DataGridTextColumn.Header>
                         <TextBlock TextAlignment="Center">
-                                    <TextBlock>Толщина<LineBreak/>стены</TextBlock>
+                                    <TextBlock>Thickness<LineBreak />Wall</TextBlock>
                             </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
@@ -69,26 +69,26 @@
                                     CanUserResize="False">
                     <DataGridTextColumn.Header>
                         <TextBlock TextAlignment="Center">
-                                    <TextBlock>Высота стены<LineBreak/>над проемом</TextBlock>
+                                    <TextBlock>Wall height<LineBreak />above opening</TextBlock>
                             </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Width="*"
-                                    Header="Тип стены"
+                                    Header="wall type"
                                     Binding="{Binding WallMaterial}"
-                                    IsReadOnly="True"/>
+                                    IsReadOnly="True" />
                 <DataGridTextColumn Width="100"
-                                    Header="Уровень"
+                                    Header="Level"
                                     Binding="{Binding Level}"
-                                    IsReadOnly="True"/>
+                                    IsReadOnly="True" />
                 <DataGridTextColumn Width="75"
                                     Binding="{Binding DistanceToLeftEnd}"
                                     IsReadOnly="True"
                                     CanUserResize="False">
                     <DataGridTextColumn.Header>
                         <TextBlock TextAlignment="Center"
-                                   ToolTip="Расстояние от левой стороны проема до левого торца стены">
-                                    <TextBlock>Расстояние<LineBreak/>слева</TextBlock>
+                                   ToolTip="Distance from the left side of the opening to the left end of the wall">
+                                    <TextBlock>Distance<LineBreak />left</TextBlock>
                             </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
@@ -98,15 +98,15 @@
                                     CanUserResize="False">
                     <DataGridTextColumn.Header>
                         <TextBlock TextAlignment="Center"
-                                   ToolTip="Расстояние от правой стороны проема до правого торца стены">
-                                    <TextBlock>Расстояние<LineBreak/>справа</TextBlock>
+                                   ToolTip="Distance from the right side of the opening to the right end of the wall">
+                                    <TextBlock>Distance<LineBreak />to the right</TextBlock>
                             </TextBlock>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
                 <DataGridTextColumn Width ="220"
-                                    Header="Тип перемычки"
+                                    Header="Lintel type"
                                     Binding="{Binding Lintel}"
-                                    IsReadOnly="True"/>
+                                    IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="1">
@@ -115,47 +115,47 @@
                         CommandParameter="{Binding SelectedOpening}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
-                        ToolTip="Если скорректировать уже созданную перемычку, то она пересоздастся. 
-                        Для того, чтобы изменить тип перемычки нужно сначала удалить ее, 
-                        а потом добавить.">
+                        ToolTip="If you correct an already created lintel, it will be recreated.
+                         In order to change the lintel type, you must first remove it,
+                         and then add.">
                     <Button.Content>
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock Text="Добавить/Редактировать" TextAlignment="Center"/>
-                            <TextBlock Text="перемычку" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Add/Edit" TextAlignment="Center" />
+                            <TextBlock Text="Lintel" VerticalAlignment="Center" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Content="Удалить перемычку"
+                <Button Content="Remove Lintel"
                         Command="{Binding DeleteLintelCommand}"
                         CommandParameter="{Binding SelectedOpening}"
-                        ToolTip="Если в списке удалить перемычку из проема, в модели она также удалится. 
-                        Если нужно изменить уже назначенный тип перемычки, то сначала нужно удалить перемычку."/>
+                        ToolTip="Если в списке удалить перемычку из проема, в модели она также удалится.
+                        Если нужно изменить уже назначенный тип перемычки, то сначала нужно удалить перемычку." />
                 <CheckBox IsChecked="{Binding UpdateLintelsLocation}"
-                          Content="Скорректировать&#10;расположения в плане"
+                          Content="Adjust&#10;plan arrangements"
                           VerticalAlignment="Center"
                           HorizontalAlignment="Center"
                           VerticalContentAlignment="Center"
-                          ToolTip="После нажатия кнопки Ок расположения перемычек&#10; будут скорректированы в соответствии с расположением их проемов. ВАЖНО!!! если основа проема изменилась, то расположение не будет скорректировано автоматически и придется его исправлять вручную!"/>
-                <Button Content="Перейти к&#10;3D обрезке проема"
+                          ToolTip="After pressing the OK button, the location of the Lintels&#10; will be adjusted according to the location of their openings. IMPORTANT!!! if the basis of the opening has changed, then the location will not be adjusted automatically and you will have to correct it manually!" />
+                <Button Content="Go to&#10;3D Trimming the Opening"
                         HorizontalContentAlignment="Center"
                         Click="GoTo3D_clicked"
-                        Command="{Binding GoToOpeningView3DCommand}"/>
+                        Command="{Binding GoToOpeningView3DCommand}" />
                 <StackPanel Orientation="Vertical" Margin="1" VerticalAlignment="Bottom">
-                    <TextBlock Text="Поиск:"></TextBlock>
-                    <TextBox Text="{Binding OpeningsFilter, UpdateSourceTrigger=PropertyChanged}" 
-                           VerticalAlignment="Stretch" 
+                    <TextBlock Text="Search:"></TextBlock>
+                    <TextBox Text="{Binding OpeningsFilter, UpdateSourceTrigger=PropertyChanged}"
+                           VerticalAlignment="Stretch"
                            HorizontalAlignment="Stretch"
                            Height="20"
                            TextAlignment="Left"></TextBox>
                 </StackPanel>
-                <Button Content="Ок" 
-                        Name="Ok" 
+                <Button Content="Ок"
+                        Name="Ok"
                         Click="Ok_Click"
-                        Command="{Binding UnsetGoToOpeningView3DCommand}"/>
-                <Button Content="Отмена" 
-                        Name="Cancel" 
+                        Command="{Binding UnsetGoToOpeningView3DCommand}" />
+                <Button Content="Cancel"
+                        Name="Cancel"
                         Click="Cancel_Click"
-                        Command="{Binding UnsetGoToOpeningView3DCommand}"/>
+                        Command="{Binding UnsetGoToOpeningView3DCommand}" />
             </UniformGrid>
         </DockPanel>
     </Grid>

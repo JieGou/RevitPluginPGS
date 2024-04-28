@@ -27,7 +27,6 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         /// </summary>
         public OpeningsInstancesViewModel()
         {
-
         }
 
         /// <summary>
@@ -54,16 +53,15 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
             _OpeningsViewSource.Filter += OnOpeningsFilter;
         }
 
-
         /// <summary>
         /// Строка фильтрации проемов
         /// </summary>
-        private protected string _OpeningsFilter;
+        protected string _OpeningsFilter;
 
         /// <summary>
         /// Коллекция для фильтрации во ViewModel
         /// </summary>
-        private protected readonly CollectionViewSource _OpeningsViewSource;
+        protected readonly CollectionViewSource _OpeningsViewSource;
 
         /// <summary>
         /// Проемы с фильтрацией
@@ -86,20 +84,19 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         }
 
         /// <summary>
-        /// Все проемы, в свойстве <seealso cref="OpeningDto.LongName"/> НЕ будет содержаться значение <see cref="OpeningsFilter"/>, не будут пропускаться фильтром.
+        /// All openings that do NOT have <seealso cref="OpeningDto.LongName"/> set to <see cref="OpeningsFilter"/> will not be passed by the filter.
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="E"></param>
-        private void OnOpeningsFilter(object sender, FilterEventArgs E)
+        /// <param name="e"></param>
+        private void OnOpeningsFilter(object sender, FilterEventArgs e)
         {
-            if (!(E.Item is OpeningDto opening) || string.IsNullOrWhiteSpace(OpeningsFilter)) return;
+            if (!(e.Item is OpeningDto opening) || string.IsNullOrWhiteSpace(OpeningsFilter)) return;
 
             if (!opening.LongName.Contains(OpeningsFilter))
             {
-                E.Accepted = false;
+                e.Accepted = false;
             }
         }
-
 
         /// <summary>
         /// Обновлять расположение перемычек после нажатия кнопки Ок, или нет
@@ -116,14 +113,13 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         /// </summary>
         public bool GoToSelectedOpeningView3D { get; private protected set; }
 
-
         /// <summary>
         /// Список проемов для создания перемычек в проекте
         /// </summary>
         public ObservableCollection<OpeningDto> Openings { get; } = new ObservableCollection<OpeningDto>();
 
         /// <summary>
-        /// Выбранный проем
+        /// Selected opening
         /// </summary>
         private OpeningDto _selectedOpening;
 
@@ -135,7 +131,6 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
             get => _selectedOpening;
             set => Set(ref _selectedOpening, value);
         }
-
 
         #region EditLintelCommand
 
@@ -187,6 +182,7 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                                 SelectedOpening.Lintel = (barLintelWindow.DataContext as LintelBarViewModel).GetLintel(SelectedOpening.Guid);
                             }
                             break;
+
                         case RevitCommands.AR.Enums.LintelType.Block:
                             LintelBlockWindow blockLintelWindow = new LintelBlockWindow()
                             {
@@ -198,6 +194,7 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                                 SelectedOpening.Lintel = (blockLintelWindow.DataContext as LintelBlockViewModel).GetLintel(SelectedOpening.Guid);
                             }
                             break;
+
                         case RevitCommands.AR.Enums.LintelType.Angle:
                             LintelAngleWindow angleLintelWindow = new LintelAngleWindow()
                             {
@@ -209,6 +206,7 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                                 SelectedOpening.Lintel = (angleLintelWindow.DataContext as LintelAngleViewModel).GetLintel(SelectedOpening.Guid);
                             }
                             break;
+
                         default:
                             break;
                     }
@@ -231,6 +229,7 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                             SelectedOpening.Lintel = (barLintelWindow.DataContext as LintelBarViewModel).GetLintel(SelectedOpening.Guid);
                         }
                         break;
+
                     case RevitCommands.AR.Enums.LintelType.Block:
                         LintelBlockViewModel blockVM = new LintelBlockViewModel((BlockLintel)lintel);
                         LintelBlockWindow blockLintelWindow = new LintelBlockWindow()
@@ -244,6 +243,7 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                             SelectedOpening.Lintel = (blockLintelWindow.DataContext as LintelBlockViewModel).GetLintel(SelectedOpening.Guid);
                         }
                         break;
+
                     case RevitCommands.AR.Enums.LintelType.Angle:
                         LintelAngleViewModel angleVM = new LintelAngleViewModel((AngleLintel)lintel);
                         LintelAngleWindow angleLintelWindow = new LintelAngleWindow()
@@ -257,12 +257,14 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
                             SelectedOpening.Lintel = (angleLintelWindow.DataContext as LintelAngleViewModel).GetLintel(SelectedOpening.Guid);
                         }
                         break;
+
                     default:
                         break;
                 }
             }
         }
-        #endregion
+
+        #endregion EditLintelCommand
 
         #region
         /// <summary>
@@ -291,8 +293,8 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         {
             SelectedOpening.Lintel = null;
         }
-        #endregion
 
+        #endregion
 
         #region GoToOpeningView3D command
         /// <summary>
@@ -317,9 +319,10 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         /// Команда перехода к 3D обрезке выбранного проема
         /// </summary>
         /// <param name="p"></param>
-        private void OnGoToOpeningView3DExecuted(object p) { GoToSelectedOpeningView3D = true; }
-        #endregion
+        private void OnGoToOpeningView3DExecuted(object p)
+        { GoToSelectedOpeningView3D = true; }
 
+        #endregion
 
         #region UnsetGoToOpeningView3DCommand
         /// <summary>
@@ -344,7 +347,9 @@ namespace MS.GUI.ViewModels.AR.LintelsManager
         /// Сбрасывание значения свойства <seealso cref="GoToSelectedOpeningView3D">GoToSelectedOpeningView3D</seealso> на false
         /// </summary>
         /// <param name="p"></param>
-        private void OnUnsetGoToView3DCommandExecute(object p) { GoToSelectedOpeningView3D = false; }
+        private void OnUnsetGoToView3DCommandExecute(object p)
+        { GoToSelectedOpeningView3D = false; }
+
         #endregion
     }
 }
